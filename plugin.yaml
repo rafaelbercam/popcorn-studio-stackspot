@@ -2,8 +2,8 @@ schema-version: v2
 kind: plugin
 metadata:
   name: popcorn-springboot-base-plugin
-  display-name: popcorn-springboot-base-plugin
-  description: projeto treinamento stackspot
+  display-name: Spring Boot Base plugin
+  description: Plugin base para construção de APIs REST com Spring Boot
   version: 0.0.1
   picture: plugin.png
 spec:
@@ -17,6 +17,8 @@ spec:
   single-use: False
   technologies: # Ref: https://docs.stackspot.com/content-creator/studio/yaml-files/plugin-yaml/#technologies
     - Api
+    - Java
+    - Spring Boot
   stk-projects-only: false
   inputs:
     - label: Type name of your resource
@@ -38,3 +40,32 @@ spec:
       default: GET
       required: true
       help: 'Inform the method of the endpoint (e.g.: post or delete)'
+    - label: Nome da aplicação
+      name: project_name
+      type: text
+      required: true
+    - label: Group_Id do Maven
+      name: project_group_id
+      type: text
+      required: true
+      pattern: '(^[a-zA-Z_\d.]*[a-zA-Z_\d]$)'
+      default: "br.com.zup.popcornstudio"
+    - label: Artifact_Id do Maven
+      name: project_artifact_id
+      type: text
+      required: true
+      help: A propriedade artifact_id do Maven é utilizada como nome do .jar da aplicação
+      pattern: ^[a-z]([a-z0-9]|_)*$
+    - label: Versão do Spring Boot
+      name: project_springboot_version
+      type: text
+      default: 3.1.4
+      required: true
+    - label: Versão do Java
+      name: project_java_version
+      type: text
+      items:
+        - "17"
+        - "21"
+      default: 17
+      required: true
